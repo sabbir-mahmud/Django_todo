@@ -75,9 +75,15 @@
                                 {% endif %}
 
                             </td>
-                            <td scope="row"><a href="{% url 'edit-task' task.id %}" class="btn btn-primary">Edit</a>
-                                <a href="{% url 'done-task' task.id %}" class="btn btn-success">Done</a>
-                                <a href="{% url 'delete-task' task.id %}" class="btn btn-warning">Delete</a>
+                            <td scope="row">
+                                {% if task.done == False %}
+                                <a href="{% url 'edit-task' task.id %}" class="mt-1 btn btn-sm btn-primary">Edit</a>
+                                {% endif %} 
+                                {% if task.done %}
+                                <a href="{% url 'delete-task' task.id %}" class="mt-1 btn btn-sm btn-warning">Delete</a>                                
+                                {% else%}
+                                <a href="{% url 'done-task' task.id %}" class="mt-1 btn btn-sm btn-success">Done</a>
+                                {% endif %} 
                             </td>
                         </tr>
                         {% endfor %}
